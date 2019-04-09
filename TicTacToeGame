@@ -1,0 +1,286 @@
+var currentPlayer = 1;
+var p1count = 0;
+var p2count =0;
+resetBoard();
+startGame();
+onEvent("button1", "click", function() {
+btnClicked("button1","TopL");
+checkFor3InRow();
+checkIfReach3();
+});
+onEvent("button2", "click", function() {
+btnClicked("button2","TopM");
+checkFor3InRow();
+checkIfReach3();
+});
+onEvent("button3", "click", function() {
+btnClicked("button3","TopR");
+checkFor3InRow();
+checkIfReach3();
+});
+onEvent("button4", "click", function() {
+btnClicked("button4","MiddleL");
+checkFor3InRow();
+checkIfReach3();
+});
+onEvent("button5", "click", function() {
+btnClicked("button5","MiddleM");
+checkFor3InRow();
+checkIfReach3();
+});
+onEvent("button6", "click", function() {
+btnClicked("button6","MiddleR");
+checkFor3InRow();
+checkIfReach3();
+});
+onEvent("button7", "click", function() {
+btnClicked("button7","BottomL");
+checkFor3InRow();
+checkIfReach3();
+});
+onEvent("button8", "click", function() {
+btnClicked("button8","BottomM");
+checkFor3InRow();
+checkIfReach3();
+});
+onEvent("button9", "click", function() {
+btnClicked("button9","BottomR");
+checkFor3InRow();
+checkIfReach3();
+});
+
+function resetBoard(){
+  setText("button1", "");
+  setText("button2", "");
+  setText("button3", "");
+  setText("button4", "");
+  setText("button5", "");
+  setText("button6", "");
+  setText("button7", "");
+  setText("button8", "");
+  setText("button9", "");
+  hideElement("TopL");
+  hideElement("TopM");
+  hideElement("TopR");
+  hideElement("MiddleL");
+  hideElement("MiddleM");
+  hideElement("MiddleR");
+  hideElement("BottomL");
+  hideElement("BottomM");
+  hideElement("BottomR");
+  setText("P1ScoreLabel", "P1: " + p1count);
+  setText("P2ScoreLabel", "P2: " + p2count);
+}
+
+function startGame(){
+  resetBoard();
+  currentPlayer =1;
+  console.log("Current player is: " + currentPlayer);
+}
+function btnClicked(btn1,btn2){
+  if(currentPlayer == 1){
+    currentPlayer++;
+    setText(btn1,"X");
+    showElement("player2_highlight");
+    hideElement("player1_highlight");
+    showElement(btn2);
+  }else{
+    currentPlayer--;
+    setText(btn1,"O");
+    showElement("player1_highlight");
+    hideElement("player2_highlight");
+    showElement(btn2);
+  }
+  console.log("Current player is: " + currentPlayer);
+}
+function checkIfReach3(){
+  if(p1count ==3){
+    setScreen("WinScreen");
+    setText("WinnerLabel", "Player 1 wins!");
+  }else if(p2count ==3){
+    setScreen("WinScreen");
+    setText("WinnerLabel", "Player 2 wins!");
+  }
+}
+function checkFor3InRow(){
+  if(getText("button1") == "X" && getText("button2") == "X" && getText("button3") == "X"){
+   p1count++;
+   setText("P1ScoreLabel", "P1: "+ p1count);
+   setText("P2ScoreLabel", "P2: "+ p2count);
+   currentPlayer = 1;
+   hideElement("player2_highlight");
+   showElement("player1_highlight");
+   console.log("Current player is: " + currentPlayer);
+   resetBoard();
+  }else if(getText("button1") =="O" && getText("button2") =="O" && getText("button3") =="O"){
+   p2count++;
+   setText("P1ScoreLabel", "P1: "+ p1count);
+   setText("P2ScoreLabel", "P2: "+ p2count);
+   currentPlayer = 1;
+   hideElement("player2_highlight");
+   showElement("player1_highlight");
+   console.log("Current player is: " + currentPlayer);
+   resetBoard();
+  }
+  else if(getText("button1") =="X" && getText("button4") =="X" && getText("button7") =="X"){
+   p1count++;
+   setText("P1ScoreLabel", "P1: "+ p1count);
+   setText("P2ScoreLabel", "P2: "+ p2count);
+   currentPlayer = 1;
+   hideElement("player2_highlight");
+   showElement("player1_highlight");
+   console.log("Current player is: " + currentPlayer);
+   resetBoard();
+  }else if(getText("button1") =="O" && getText("button4") =="O" && getText("button7") =="O"){
+    p2count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }
+  else if(getText("button2") =="X" && getText("button5") =="X" && getText("button8") =="X"){
+    p1count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+    console.log("Player 1 Wins");
+  }else if(getText("button2") =="O" && getText("button5") =="O" && getText("button8") =="O"){
+    p2count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+    console.log("Player 2 Wins");
+  }
+  else if(getText("button3") =="X" && getText("button6") =="X" && getText("button9") =="X"){
+    p1count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }else if(getText("button3") =="O" && getText("button6") =="O" && getText("button9") =="O"){
+    p2count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }
+  else if(getText("button1") =="X" && getText("button5") =="X" && getText("button9") =="X"){
+    p1count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }else if(getText("button1") =="O" && getText("button5") =="O" && getText("button9") =="O"){
+    p2count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }
+  else if(getText("button4") =="X" && getText("button5") =="X" && getText("button6") =="X"){
+    p1count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }else if(getText("button4") =="O" && getText("button5") =="O" && getText("button6") =="O"){
+    p2count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }
+  else if(getText("button7") =="X" && getText("button8") =="X" && getText("button9") =="X"){
+    p1count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }else if(getText("button7") =="O" && getText("button8") =="O" && getText("button9") =="O"){
+    p2count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }else if(getText("button3") =="X" && getText("button5") =="X" && getText("button7") =="X"){
+    p1count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+    console.log("Player 1 Wins");  
+  }else if(getText("button3") =="O" && getText("button5") =="O" && getText("button7") =="O"){
+    p2count++;
+    setText("P1ScoreLabel", "P1: "+ p1count);
+    setText("P2ScoreLabel", "P2: "+ p2count);
+    currentPlayer = 1;
+    hideElement("player2_highlight");
+    showElement("player1_highlight");
+    console.log("Current player is: " + currentPlayer);
+    resetBoard();
+  }
+}
+onEvent("PlayButton", "click", function() {
+  setScreen("GameScreen");
+  showElement("player1_highlight");
+  hideElement("player2_highlight");
+});
+onEvent("RestartButtonWin", "click", function() {
+  currentPlayer = 1;
+  hideElement("player2_highlight");
+  showElement("player1_highlight");
+  p1count =0;
+  p2count =0;
+  setText("P1ScoreLabel", "P1:" + p1count);
+  setText("P2ScoreLabel", "P2: " + p2count);
+  setScreen("GameScreen");
+  resetBoard();
+});
+onEvent("RestartButtonGame", "click", function() {
+  currentPlayer = 1;
+  console.log("Current player is: " + currentPlayer);
+  setText("P1ScoreLabel", "P1:" + p1count);
+  setText("P2ScoreLabel", "P2: " + p2count);
+  hideElement("player2_highlight");
+  showElement("player1_highlight");
+  setScreen("GameScreen");
+  resetBoard();
+});
